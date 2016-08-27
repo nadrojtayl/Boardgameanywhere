@@ -1,0 +1,44 @@
+<html>
+<head>
+<!-- Use this to create a form where we can do something with the input-->
+<!-- http://stackoverflow.com/questions/19617996/file-upload-without-form -->
+	<script src='node_modules/jquery/dist/jquery.js' type='text/javascript'></script>
+	<script src='bower_components/jquery/dist/jquery.min.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.ui.widget.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.iframe.transport.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.fileupload.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.cloudinary.js' type='text/javascript'></script>
+	<script>
+	$.cloudinary.config({ cloud_name: 'boardgameanywhere', api_key: '797866663199626'})
+	</script>
+</head>
+<body>
+
+
+
+
+	<div class = "upload_form">Save File to Cloud </div>
+
+	<script>
+	$('.upload_form').append($.cloudinary.unsigned_upload_tag("p76riotl", 
+  		 {cloud_name: 'boardgameanywhere' }));
+		 $('.upload_form').unsigned_cloudinary_upload("zcudy0uz", 
+		  { cloud_name: 'demo', tags: 'browser_uploads' }, 
+		  { multiple: true }
+		).bind('cloudinarydone', function(e, data) {
+
+		  console.log(data.result.url) 
+		
+		}
+		)
+	</script>
+
+
+	<form method = 'POST' action = 'https://api.ocr.space/Parse/Image'>
+		<input name = 'apikey' value = 'f19b20c27688957' hidden></input>
+		<input name = 'language' value = 'eng' hidden></input>
+		<input name='url' value='http://www.timberdoodle.com/v/vspfiles/photos/237-237-2.jpg' hidden>
+		<input type='submit'>Submit to OCR</input>
+	</form>
+</body>
+</html>
