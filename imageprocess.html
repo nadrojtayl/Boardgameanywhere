@@ -1,7 +1,8 @@
 <html>
 <head>
 <!-- Use this to create a form where we can do something with the input-->
-<!-- http://stackoverflow.com/questions/19617996/file-upload-without-form -->
+<!-- IF CLOUDINARY LINK IS BROKEN, SEE BLOG POST HERE
+http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to_the_cloudbin -->
 	<script src='node_modules/jquery/dist/jquery.js' type='text/javascript'></script>
 	<script src='bower_components/jquery/dist/jquery.min.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.ui.widget.js' type='text/javascript'></script>
@@ -33,6 +34,7 @@
 		  	url:'https://api.ocr.space/Parse/Image',
 		  	data:{'apikey':'f19b20c27688957','language':'eng','url':cddata.result.url},
 		  	success: function(data){
+		  		console.log(data.ParsedResults);
 		  		console.log(data.ParsedResults[0].ParsedText);
 		  	},
 		  	failure: function(data){
