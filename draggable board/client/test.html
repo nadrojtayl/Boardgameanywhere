@@ -1,0 +1,130 @@
+
+<html>
+<head>
+<script src = "../node_modules/jquery/dist/jquery.js"></script>
+<!--  Support for image uploading to Cloudinary-->
+<!--
+<script type="text/javascript" src="../server/cloudinary_js/js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../server/cloudinary_js/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="../server/cloudinary_js/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="../server/cloudinary_js/js/jquery.cloudinary.js"></script>
+<script type="text/javascript">
+  console.log( $.cloudinary.config({"api_key":"797866663199626","cloud_name":"boardgameanywhere"}));
+
+</script> 
+ -->
+<!--  Support for image uploading to Cloudinary-->
+
+
+
+<meta charset=utf-8 />
+</head>
+
+<body>
+
+<input type='file' onchange = "readURL(this);"></input>
+<div>
+
+
+
+	<svg height = 1750 width = 1750>
+		<g id="map-matrix" transform="matrix(1 0 0 1 0 0)">
+			<image x = 0 y = 0 width = 1750 height = 1750 xlink:href="http://res.cloudinary.com/boardgameanywhere/image/upload/v1472021205/kqiuxcm8pyi3qcmemwsg.jpg"></image>
+		</g>
+
+		
+
+		<script type="text/ecmascript">
+		  var transMatrix = [1,0,0,1,0,0];
+		        
+	
+
+		    mapMatrix = document.getElementById('map-matrix');
+		    width  = 500;
+		    height = 500;
+		  
+
+				function pan(dx, dy)
+		{     	
+		  transMatrix[4] += dx;
+		  transMatrix[5] += dy;
+		  console.log(mapMatrix);
+		  newMatrix = "matrix(" +  transMatrix.join(' ') + ")";
+		  mapMatrix.setAttributeNS(null, "transform", newMatrix);
+		}
+
+		function zoom(scale)
+			{
+			  console.log(transMatrix);
+			  for(var i = 0 ;i< transMatrix.length;i++){
+			  	transMatrix[i] *= scale;
+			  }
+
+			  transMatrix[4] += (1-scale) * width/2;
+			  transMatrix[5] += (1-scale) * height/2;
+			  newMatrix = "matrix(" +  transMatrix.join(' ') + ")";
+			  mapMatrix.setAttributeNS(null, "transform", newMatrix);
+
+
+
+			}
+		</script>
+
+
+
+				<style>
+		  .compass{
+		    fill:  #fff;
+		    stroke:  #000;
+		    stroke-width:  1.5;
+		  }
+		  .button{
+		    fill:  #225EA8;
+		    stroke:  #0C2C84;
+		    stroke-miterlimit:	6;
+		    stroke-linecap:  round;
+		  }
+		  .button:hover{
+		    stroke-width:  2;
+		  }
+		  .plus-minus{
+		    fill:  #fff;
+		    pointer-events: none;
+		  }
+		</style>
+
+		<circle cx="50" cy="50" r="42" fill="white" opacity="0.75"/>
+		<path class="button" onclick="pan(0,50)"
+		  d="M50 10 l12 20 a40,70 0 0,0 -24,0z" />
+		<path class="button" onclick="pan(50,0)"
+		  d="M10 50 l20 -12 a70,40 0 0,0 0,24z" />
+		<path class="button" onclick="pan(0,-50)"
+		  d="M50 90 l12 -20 a40,70 0 0,1 -24,0z" />
+		<path class="button" onclick="pan(-50,0)"
+		  d="M90 50 l-20 -12 a70,40 0 0,1 0,24z" />
+		  
+		<circle class="compass" cx="50" cy="50" r="20"/>
+		<circle class="button"  cx="50" cy="41" r="8"
+		  onclick="zoom(0.8)"/>
+		<circle class="button"  cx="50" cy="59" r="8"
+		  onclick="zoom(1.25)"/>
+
+		<rect class="plus-minus" x="46" y="39.5"
+		  width="8" height="3"/>
+		<rect class="plus-minus" x="46" y="57.5"
+		  width="8" height="3"/>
+		<rect class="plus-minus" x="48.5" y="55"
+		 width="3" height="8"/>
+	</svg>
+
+	<img src = "http://res.cloudinary.com/boardgameanywhere/image/upload/v1472021205/kqiuxcm8pyi3qcmemwsg.jpg"></img>
+</div>
+
+<input name="file" type="file" 
+               class="cloudinary-fileupload" data-cloudinary-field="image_id" 
+               data-form-data="--signedData--" />
+
+<script src = "../helpers/helpers.js"></script>
+</body>
+
+</html>

@@ -34,7 +34,8 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		  	url:'https://api.ocr.space/Parse/Image',
 		  	data:{'apikey':'f19b20c27688957','language':'eng','url':cddata.result.url},
 		  	success: function(data){
-		  		console.log(data.ParsedResults);
+		  		console.log('here',data.ParsedResults);
+		  		console.log('typeof',typeof data.ParsedResults[0].ParsedText);
 		  		console.log(data.ParsedResults[0].ParsedText);
 		  	},
 		  	failure: function(data){
