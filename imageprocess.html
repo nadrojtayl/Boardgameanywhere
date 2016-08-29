@@ -9,6 +9,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	<script src='cloudinary_js/js/jquery.iframe.transport.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.fileupload.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.cloudinary.js' type='text/javascript'></script>
+	<script src='node_modules/d3/build/d3.js'></script>
 	<script>
 	$.cloudinary.config({ cloud_name: 'boardgameanywhere', api_key: '797866663199626'})
 	</script>
@@ -34,7 +35,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		  	url:'https://api.ocr.space/Parse/Image',
 		  	data:{'apikey':'f19b20c27688957','language':'eng','url':cddata.result.url},
 		  	success: function(data){
-		  		console.log('here',data.ParsedResults);
+		  		console.log(data.ParsedResults);
 		  		console.log('typeof',typeof data.ParsedResults[0].ParsedText);
 		  		console.log(data.ParsedResults[0].ParsedText);
 		  	},
@@ -54,5 +55,12 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		<input name='url' value='http://www.timberdoodle.com/v/vspfiles/photos/237-237-2.jpg' hidden>
 		<input type='submit'>Submit to OCR</input>
 	</form>
+	<svg id = "gameboard" width = 500 height = 500>
+	</svg>
+	<script>
+	var teststring = "HELLO".split("")
+	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('text').attr('x',20).attr('y',20).attr('font-size',12).text('hey').append('rect').attr('height',50).attr('width',50).attr('x',0).attr('y',0).attr('fill','green')
+	</script>
+	
 </body>
 </html>
