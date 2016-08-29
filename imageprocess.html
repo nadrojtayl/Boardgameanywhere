@@ -66,7 +66,12 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 
 	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
 
-	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
+	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveableletter')
+
+	var tiles = $('.moveable')
+	var index = 0;
+	console.log($('.moveable:eq(0)').attr('fill'))
+
 
 	var getnewtranslate = function(old,changex,changey){
 		
@@ -83,13 +88,13 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	$('body').keydown(function(evt){
 		//console.log(evt.which)
 		if(evt.which===39){
-			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),10,0))
+			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),10,0))
 		} else if(evt.which === 37){
-			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),-10,0))
+			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),-10,0))
 		} else if(evt.which === 40){
-			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,10))
+			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,10))
 		} else if(evt.which === 38){
-			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,-10))
+			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,-10))
 		}
 	})	
 
