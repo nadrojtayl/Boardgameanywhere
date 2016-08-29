@@ -71,6 +71,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	var tiles = $('.moveable')
 	var index = 0;
 	var selected = $('.moveable:eq(' + index + ')');
+	var selectedletter= $('.moveableletter:eq(' + index + ')');
 	selected.attr('stroke','red')
 
 
@@ -78,7 +79,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		
 		var oldx = Number(old.slice(old.indexOf('(') +1,old.indexOf(',')));
 		var oldy = Number(old.slice(old.indexOf(',') + 1,old.indexOf(')')));
-		console.log(oldy)
+		//console.log(oldy)
 		//var newtrans = old.slice(old.indexOf('(') + 1).slice(0,-1)
 		var final = 'translate(' + (oldx + changex) + ',' + (oldy + changey) + ')';
 		//console.log(oldy)
@@ -87,21 +88,28 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	}
 
 	$('body').keydown(function(evt){
-		console.log(evt.which)
+		console.log('which',evt.which)
 		if(evt.which === 65){
 			index ++;
+			//change tile
 			selected.attr('stroke','black')
 			selected = $('.moveable:eq(' + index + ')')
 			selected.attr('stroke','red')
+			//change letter
+			selectedletter = $('.moveable:eq(' + index + ')')
 		}
 		if(evt.which===39){
 			selected.attr('transform',getnewtranslate(selected.attr('transform'),10,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),10,0))
 		} else if(evt.which === 37){
 			selected.attr('transform',getnewtranslate(selected.attr('transform'),-10,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-10,0))
 		} else if(evt.which === 40){
 			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,10))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,10))
 		} else if(evt.which === 38){
 			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,-10))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-10,0))
 		}
 	})	
 
