@@ -71,6 +71,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	var tiles = $('.moveable')
 	var index = 0;
 	var selected = $('.moveable:eq(' + index + ')');
+	selected.attr('stroke','red')
 
 
 	var getnewtranslate = function(old,changex,changey){
@@ -89,7 +90,9 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		console.log(evt.which)
 		if(evt.which === 65){
 			index ++;
+			selected.attr('stroke','black')
 			selected = $('.moveable:eq(' + index + ')')
+			selected.attr('stroke','red')
 		}
 		if(evt.which===39){
 			selected.attr('transform',getnewtranslate(selected.attr('transform'),10,0))
