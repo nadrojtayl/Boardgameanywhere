@@ -70,7 +70,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 
 	var tiles = $('.moveable')
 	var index = 0;
-	console.log($('.moveable:eq(0)').attr('fill'))
+	var selected = $('.moveable:eq(' + index + ')');
 
 
 	var getnewtranslate = function(old,changex,changey){
@@ -86,15 +86,19 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	}
 
 	$('body').keydown(function(evt){
-		//console.log(evt.which)
+		console.log(evt.which)
+		if(evt.which === 65){
+			index ++;
+			selected = $('.moveable:eq(' + index + ')')
+		}
 		if(evt.which===39){
-			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),10,0))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),10,0))
 		} else if(evt.which === 37){
-			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),-10,0))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),-10,0))
 		} else if(evt.which === 40){
-			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,10))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,10))
 		} else if(evt.which === 38){
-			$('.moveable:eq(' + index + ')').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,-10))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,-10))
 		}
 	})	
 
