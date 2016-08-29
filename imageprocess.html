@@ -73,6 +73,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	var selected = $('.moveable:eq(' + index + ')');
 	var selectedletter= $('.moveableletter:eq(' + index + ')');
 	selected.attr('stroke','red')
+	var translateamount = 2;
 
 
 	var getnewtranslate = function(old,changex,changey){
@@ -96,20 +97,20 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 			selected = $('.moveable:eq(' + index + ')')
 			selected.attr('stroke','red')
 			//change letter
-			selectedletter = $('.moveable:eq(' + index + ')')
+			selectedletter = $('.moveableletter:eq(' + index + ')')
 		}
 		if(evt.which===39){
-			selected.attr('transform',getnewtranslate(selected.attr('transform'),10,0))
-			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),10,0))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),translateamount,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),translateamount,0))
 		} else if(evt.which === 37){
-			selected.attr('transform',getnewtranslate(selected.attr('transform'),-10,0))
-			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-10,0))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),-translateamount,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-translateamount,0))
 		} else if(evt.which === 40){
-			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,10))
-			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,10))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,translateamount))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,translateamount))
 		} else if(evt.which === 38){
-			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,-10))
-			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-10,0))
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,-translateamount))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,-translateamount))
 		}
 	})	
 
