@@ -61,7 +61,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		</svg>	
 	</div>
 	<button onclick = "nextletter()">Get next letter</button>
-	<span> Letters remaining: 10 </span>
+	<span> Letters remaining: <span id= 'remainingcount'>10</span> </span>
 	<script>
 	//append unused letters 
 	var teststring = "HELLO".split("")
@@ -71,6 +71,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	// });
 
 	var unusedletters = ['a','e','i','o','u']
+	$('#remainingcount').html(unusedletters.length)
 
 	function addtoteststring(letter){
 		teststring.push(
@@ -83,6 +84,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 			var newletter = unusedletters.pop();
 			addtoteststring(newletter);
 			updateletters();
+			$('#remainingcount').html(unusedletters.length)
 		}
 	}
 
