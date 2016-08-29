@@ -61,6 +61,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		</svg>	
 	</div>
 	<button onclick = "nextletter()">Get next letter</button>
+	<span> Letters remaining: 10 </span>
 	<script>
 	//append unused letters 
 	var teststring = "HELLO".split("")
@@ -78,7 +79,11 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	}
 
 	function nextletter(){
-
+		if(unusedletters.length>0){
+			var newletter = unusedletters.pop();
+			addtoteststring(newletter);
+			updateletters();
+		}
 	}
 
 	updateletters()
