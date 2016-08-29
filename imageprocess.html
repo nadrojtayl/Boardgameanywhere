@@ -64,22 +64,33 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	var teststring = "HELLO".split("")
 	teststring = teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
 
-	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100)').attr('class','moveable')
+	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
 
-	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100)').attr('class','moveable')
+	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
 
-	var getnewtranslate = function(old){
-		console.log(old);
-		var newtrans = old.slice(old.indexOf('(') + 1).slice(0,-1)
-		var final = 'translate(' + (Number(newtrans) + 10) + ')';
-		console.log(final);
+	var getnewtranslate = function(old,changex,changey){
+		
+		var oldx = Number(old.slice(old.indexOf('(') +1,old.indexOf(',')));
+		var oldy = Number(old.slice(old.indexOf(',') + 1,old.indexOf(')')));
+		console.log(oldy)
+		//var newtrans = old.slice(old.indexOf('(') + 1).slice(0,-1)
+		var final = 'translate(' + (oldx + changex) + ',' + (oldy + changey) + ')';
+		//console.log(oldy)
+;		//console.log(final);
 		return final;
 	}
 
 	$('body').keydown(function(evt){
-		console.log
-		console.log($('.moveable'))
-		$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform')))
+		//console.log(evt.which)
+		if(evt.which===39){
+			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),10,0))
+		} else if(evt.which === 37){
+			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),-10,0))
+		} else if(evt.which === 40){
+			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,10))
+		} else if(evt.which === 38){
+			$('.moveable').attr('transform',getnewtranslate($('.moveable').attr('transform'),0,-10))
+		}
 	})	
 
 	</script>
