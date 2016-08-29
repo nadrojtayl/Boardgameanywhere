@@ -57,12 +57,23 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		<input type='submit'>Submit to OCR</input>
 	</form>
 	<div padding = "20px"  >
-		<svg id = "gameboard" width = 1000 height = 500 style = "border:5px solid red">
-		</svg>
+		<svg id = "gameboard" width = 1000 height = 500 style = "border:5px solid black">
+		</svg>	
 	</div>
+	<button onclick = "nextletter()">Get next letter</button>
 	<script>
+	//append unused letters 
 	var teststring = "HELLO".split("")
 	teststring = teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
+	// unusedletters.forEach(function(letter){
+	// 	$('#unusedpile').append($('<span margin-right:"10px">'+ letter + '</span>'))
+	// });
+	
+	var unusedletters = ['a','e','i','o','u']
+	function nextletter(){
+
+	}
+	//string of words user is already using
 
 	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
 
