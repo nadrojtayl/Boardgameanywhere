@@ -10,6 +10,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	<script src='cloudinary_js/js/jquery.fileupload.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.cloudinary.js' type='text/javascript'></script>
 	<script src='node_modules/d3/build/d3.js'></script>
+	<link rel = "stylesheet" type= "text/css" href = "styles.css"></link>
 	<script>
 	$.cloudinary.config({ cloud_name: 'boardgameanywhere', api_key: '797866663199626'})
 	</script>
@@ -63,9 +64,9 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	var teststring = "HELLO".split("")
 	teststring = teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20}})
 
-	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black')
+	d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable')
 
-	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter})
+	d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable')
 	</script>
 	
 </body>
