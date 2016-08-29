@@ -79,12 +79,17 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		)
 	}
 
+	function youwin(){
+		alert("You are the last player to split! You won!")
+	}
 	function nextletter(){
 		if(unusedletters.length>0){
 			var newletter = unusedletters.pop();
 			addtoteststring(newletter);
 			updateletters();
 			$('#remainingcount').html(unusedletters.length)
+		} else{
+			youwin()
 		}
 	}
 
