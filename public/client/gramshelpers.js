@@ -179,7 +179,8 @@ function getunusedletterspile(){
 				//change tile
 				game.selected.attr('stroke','black')
 				game.selected = $('.moveable:eq(' + game.index + ')')
-				game.selected.attr('stroke','red')
+				game.selected.attr('stroke','blue')
+				game.selected.attr('stroke-width','2')
 				//change letter
 				game.selectedletter = $('.moveableletter:eq(' + game.index + ')')
 				game.switchable = false;
