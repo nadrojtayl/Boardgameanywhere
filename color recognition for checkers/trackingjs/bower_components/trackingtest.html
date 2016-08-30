@@ -35,14 +35,14 @@
       var demoContainer = document.querySelector('.demo-container');
 
 
-      tracking.ColorTracker.registerColor('white', function(r, g, b) {
-      if ((r >169) && g >169 && b > 169) {
+      tracking.ColorTracker.registerColor('red', function(r, g, b) {
+      if ((r >252) && g >60 && b > 60) {
         return true;
       }
       return false;
     });
 
-      var tracker = new tracking.ColorTracker(['magenta','white']);
+      var tracker = new tracking.ColorTracker(['magenta','red']);
       tracker.on('track', function(event) {
         event.data.forEach(function(rect) {
           window.plot(rect.x, rect.y, rect.width, rect.height, rect.color);

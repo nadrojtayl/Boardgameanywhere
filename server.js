@@ -12,9 +12,6 @@ app.use(BP.json());
 app.use(express.static('public'));
 
 var lettersinuse = {};
-var current
-
-var remainingletters = ['a','e','i','o','u'];
 
 app.get('/',function(req,res){
 	res.sendFile(__dirname + '/index.html')

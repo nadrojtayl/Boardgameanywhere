@@ -9,6 +9,7 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	<script src='cloudinary_js/js/jquery.iframe.transport.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.fileupload.js' type='text/javascript'></script>
 	<script src='cloudinary_js/js/jquery.cloudinary.js' type='text/javascript'></script>
+	<script src='node_modules/underscore/underscore.js' type='text/javascript'></script>
 	<script src='node_modules/d3/build/d3.js'></script>
 	<script src='client/gramshelpers.js'></script>
 	<link rel = "stylesheet" type= "text/css" href = "client/styles.css"></link>
@@ -18,7 +19,12 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 </head>
 <body>
 	<form>
-		1. Choose room
+		1. Choose game
+		<select type="select" id="game">
+			<option value = "Checkers"> Checkers </option>
+			<option value = "Bananagrams"> Banagrams </option>
+		</select>
+		2. Choose room
 		<input type="text" id="room"></input>
 	</form>
 	<h2 class = "upload_form header" id="header" margin-bottom:'25px'>2. Upload your picture to start up right where you left off </h2>
@@ -31,8 +37,9 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		</svg>	
 	</div>
 	<button onclick = "game.nextletter()">Get next letter</button>
-	<span> Letters remaining: <span id= 'remainingcount'>10</span> </span>
+	<p> Letters remaining: <span id= 'remainingcount'>10</span> </p>
 	
-	
+	<svg id="checkers" width = 256 height =256></svg>
+	<script src='public/client/appendcheckersboard.js'></script>
 </body>
 </html>
