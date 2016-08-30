@@ -143,7 +143,8 @@ function getunusedletterspile(){
 		console.log('which',evt.which)
 		if(evt.which === 65){
 			if(game.switchable === true){
-				game.index = game.index +1;
+				console.log(game.index > $('.moveable').length);
+				game.index = game.index > $('.moveable').length ? 0: game.index +1;
 				setInterval(function(){game.switchable = true;
 				},400)
 				console.log(game.index)
