@@ -1,17 +1,22 @@
 var db = require('mongoose');
 
-db = mongoose.connection('boardgameanywhere')
+db = mongoose.connection('mongodb://localhost/test');
 
 
-var game = mongoose.Schema({
-	lettersremaining: 'String'
+
+var game = new mongoose.Schema({
+	lettersremaining: String
 })
 
-var user = mongoose.Schema({
-	name: 'String'
-})
+var game = mongoose.model('Game',game);	
 
-var test = 'user',{lettersremaining:JSON.stringify()}
+var test = new game({lettersremaining:JSON.stringify(['a','e','i','o','u'])})
+
+test.save(function(err){
+	if(err){
+		console.log('err');
+	}
+})
 
 
 test.create();
