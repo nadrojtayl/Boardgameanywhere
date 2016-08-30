@@ -2,7 +2,8 @@
 	var game = {};
 	function initiategame(string){
 		game.teststring = string.split("")
-		game.teststring = game.teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
+		var y = 50;
+		game.teststring = game.teststring.map(function(letter,index){if(letter === " "){y=y+50};return {letter:letter,y:y,x:(32*index) + 20,offset:10}})
 		game.unusedletters = getunusedletterspile()
 		game.updateletters();
 		game.setup()
