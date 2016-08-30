@@ -3,7 +3,9 @@
 	function initiategame(string){
 		game.teststring = string.split("")
 		var y = 50,x=0;
+		var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 		game.teststring = game.teststring.map(function(letter,index){if(letter === " "){y=y+50;x=0;};x+=32;return {letter:letter,y:y,x:(x) + 20,offset:10}})
+		game.teststring = game.teststring.filter(function(obj){return letters.indexOf(obj.letter) !== -1;})
 		game.unusedletters = getunusedletterspile()
 		game.updateletters();
 		game.setup()
