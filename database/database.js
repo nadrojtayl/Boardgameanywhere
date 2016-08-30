@@ -1,6 +1,8 @@
-var db = require('mongoose');
+var mongoose = require('mongoose')
+var MongoClient = require('mongodb').MongoClient
 
-db = mongoose.connection('mongodb://localhost/test');
+
+db = mongoose.connect('mongodb://localhost/test');
 
 
 
@@ -19,4 +21,4 @@ test.save(function(err){
 })
 
 
-test.create();
+//test.create();
