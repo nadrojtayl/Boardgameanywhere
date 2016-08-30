@@ -15,5 +15,6 @@ var checkerssetup = _.template("\
 	<svg id='checkers' width = 256 height =256></svg>\
 	<script src='client/appendcheckersboard.js'></script>\
 	<script src='client/cloudinarysetup.js'></script>\
+	<p> Use 'A' to select pieces, arrow keys to move, and click on a piece to remove it </p>\
 \
 	")
