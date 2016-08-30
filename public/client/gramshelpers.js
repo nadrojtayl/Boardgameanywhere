@@ -17,7 +17,7 @@
 			},failure:function(){
 				console.log('Couldnt get unused letters from servers');
 			},
-			data:{word:game.teststring.map(function(obj){return obj.letter})}
+			data:{word:game.teststring.map(function(obj){return obj.letter}),room:$('#room').val()}
 		})
 		
 		//game.unusedletters = getunusedletterspile()
@@ -113,14 +113,28 @@ function getunusedletterspile(){
 
 //update board and unusedpile when user takes letter from unused
 	game.nextletter = function(){
-		if(game.unusedletters.length>0){
-			var newletter = game.unusedletters.pop();
-			game.addtoteststring(newletter);
-			game.updateletters();
-			$('#remainingcount').html(game.unusedletters.length)
-		} else{
-			youwin()
-		}
+		console.log('here')
+		$.ajax({
+			method:'POST',
+			url:'http://localhost:3000/split',
+			data:{room:$('#room').val()},
+			success:function(data){
+				data = data.replace('"',"").replace('"',"");
+				game.addtoteststring(data);
+				game.updateletters();
+			},failure:function(){
+				console.log('There was an error')
+			}
+
+		})
+		// if(game.unusedletters.length>0){
+		// 	var newletter = game.unusedletters.pop();
+		// 	game.addtoteststring(newletter);
+		// 	game.updateletters();
+		// 	//$('#remainingcount').html(game.unusedletters.length)
+		// } else{
+		// 	youwin()
+		// }
 
 		//and alert user they won if they take the last letter
 		function youwin(){
