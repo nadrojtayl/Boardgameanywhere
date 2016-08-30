@@ -20,7 +20,7 @@
 	var board = $('#checkers')
 
 
-	d3.select('#checkers').selectAll('rect').data(boardmap).enter().append('rect').attr('fill',function(d){return d.redorwhite}).attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('width',32).attr('height',32)
+	d3.select('#checkers').selectAll('rect').data(boardmap).enter().append('rect').attr('fill',function(d){return d.redorwhite}).attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('width',32).attr('height',32).attr('class','moveable').attr('transform','translate(0,0)')
 	
 	circlemap = boardmap.filter(function(item,index){
 		return index % 8 !== 3 && index % 8 !== 4;
