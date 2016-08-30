@@ -50,16 +50,16 @@ module.exports.postRoom = function(name,data){
 	room.save();
 }
 
-var getGameData = function(name,cb){
+module.exports.getGameData = function(name,cb){
 	Room.findOne({name:name},function(err,data){
 		if(err){
 			console.log(err);
 		}
-		cb(data);
+		cb(data.gamedata);
 	})
 }
 
-getGameData('hey',function(a){console.log(a)});
+// getGameData('hey',function(a){console.log(a)});
 
 //return all
 // module.exports.getRooms = function

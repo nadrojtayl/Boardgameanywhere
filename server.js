@@ -29,7 +29,7 @@ app.post('/remainingletters',function(req,res){
 app.post('/split',function(req,res){
 	
 	var room =req.body.room	;
-	console.log('remainingletters',lettersinuse[room].length);
+	//console.log('remainingletters',lettersinuse[room].length);
 	if(lettersinuse[room].length === 0){
 		res.end('You won!');
 	}
@@ -38,9 +38,15 @@ app.post('/split',function(req,res){
 })
 
 app.post('/newgame',function(req,res){
-	console.log(req.body.name);
+	//console.log(req.body.name);
 	db.postRoom(req.body.name,req.body.html)
 	res.end('Got it');
+})
+
+app.post('/loadgame',function(req,res){
+	db.getGameData(req.body.name,function(data){
+		res.end(JSON.stringify(data));
+	})
 })
 
 app.listen('3000');
