@@ -17,9 +17,9 @@
 			},failure:function(){
 				console.log('Couldnt get unused letters from servers');
 			},
-			data:JSON.stringify({word:game.teststring})
+			data:{word:game.teststring.map(function(obj){return obj.letter})}
 		})
-		console.log(JSON.stringify({word:game.teststring.map(function(obj){return obj.letter})}))
+		
 		//game.unusedletters = getunusedletterspile()
 		game.updateletters();
 		game.setup()

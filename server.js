@@ -21,9 +21,10 @@ app.get('/',function(req,res){
 })
 
 app.post('/remainingletters',function(req,res){
-	console.log(req.body);
+
+	//console.log('LENGTH',helper.getletters(req.body.word).length);
 	res.writeHead(200,{'Access-Control-Allow-Origin':'*'})
-	res.end(JSON.stringify(remainingletters));
+	res.end(JSON.stringify(helper.getletters(req.body.word)));
 })
 
 app.get('/split',function(req,res){

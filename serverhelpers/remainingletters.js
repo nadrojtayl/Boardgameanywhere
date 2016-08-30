@@ -1,6 +1,6 @@
 module.exports.getletters = function(word){
 	game = {};
-	game.teststring = word.split("");
+	game.teststring = word;
 	unusedletters = []
 		game.bananagramsdistribution = {
 			A:13,
@@ -32,10 +32,10 @@ module.exports.getletters = function(word){
 		}
 		//remove letters currently in string from unused pile
 		game.teststring.forEach(function(letter){
-			game.bananagramsdistribution[letter.letter] = game.bananagramsdistribution[letter.letter]-1;
+			game.bananagramsdistribution[letter] = game.bananagramsdistribution[letter]-1;
 			//console.log('letter',letter.letter,'number',bananagramsdistribution[letter.letter])
 		})
-
+		//console.log(game.bananagramsdistribution['H']);
 		function shuffle(array) {
 		  var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -60,8 +60,10 @@ module.exports.getletters = function(word){
 				unusedletters.push(key);
 			}
 		}
-
+		console.log('length',		unusedletters.length);
 		unusedletters = shuffle(unusedletters);
 
 		return unusedletters;
 }
+
+module.exports.getletters('HEY'.split(''))
