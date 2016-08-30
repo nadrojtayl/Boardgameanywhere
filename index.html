@@ -12,6 +12,8 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	<script src='node_modules/underscore/underscore.js' type='text/javascript'></script>
 	<script src='node_modules/d3/build/d3.js'></script>
 	<script src='client/gramshelpers.js'></script>
+	<script src='client/overallhelpers.js'></script>
+	<script src='client/templates.js'></script>
 	<link rel = "stylesheet" type= "text/css" href = "client/styles.css"></link>
 	<script>
 	$.cloudinary.config({ cloud_name: 'boardgameanywhere', api_key: '797866663199626'})
@@ -22,12 +24,15 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 		1. Choose game
 		<select type="select" id="game">
 			<option value = "Checkers"> Checkers </option>
-			<option value = "Bananagrams"> Banagrams </option>
+			<option value = "Bananagrams"> Bananagrams </option>
 		</select>
 		2. Choose room
 		<input type="text" id="room"></input>
+		3. Click play 
+		<button type= "button" onclick = "loadgame()"> Play </button>
 	</form>
-	<h2 class = "upload_form header" id="header" margin-bottom:'25px'>2. Upload your picture to start up right where you left off </h2>
+	<div id='gamespace'></div>
+	<!-- <h2 class = "upload_form header" id="header" margin-bottom:'25px'>2. Upload your picture to start up right where you left off </h2>
 
 	<script src="client/cloudinarysetup.js"></script>
 
@@ -40,6 +45,6 @@ http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to
 	<p> Letters remaining: <span id= 'remainingcount'>10</span> </p>
 	
 	<svg id="checkers" width = 256 height =256></svg>
-	<script src='public/client/appendcheckersboard.js'></script>
+	<script src='public/client/appendcheckersboard.js'></script> -->
 </body>
 </html>

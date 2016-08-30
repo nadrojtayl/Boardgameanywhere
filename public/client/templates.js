@@ -13,6 +13,6 @@ var bananagramssetup = _.template("<h2 class = 'upload_form header' id='header' 
 var checkerssetup = _.template("\
 	<h2 class = 'upload_form header' id='header' margin-bottom:'25px'>2. Upload your picture to start up right where you left off </h2>\
 	<svg id='checkers' width = 256 height =256></svg>\
-	<script src='public/client/appendcheckersboard.js'></script>\
+	<script src='client/appendcheckersboard.js'></script>\
 \
 	")

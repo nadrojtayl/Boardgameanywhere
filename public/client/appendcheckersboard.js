@@ -1,4 +1,4 @@
-var appendcheckers = function(){
+
 
 	var boardmap = []
 	for(var i =0;i<8;i++){
@@ -22,5 +22,4 @@ var appendcheckers = function(){
 
 	d3.select('#checkers').selectAll('rect').data(boardmap).enter().append('rect').attr('fill',function(d){return d.redorwhite}).attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('width',32).attr('height',32)
 
-	console.log('here');
-}
+
