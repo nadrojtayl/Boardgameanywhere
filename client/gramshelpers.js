@@ -1,7 +1,15 @@
 //establish string of users board and split into array
 	var game = {};
-	game.teststring = "HELLO".split("")
-	game.teststring = game.teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
+	function initiategame(string){
+		game.teststring = string.split("")
+		game.teststring = game.teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
+		game.unusedletters = getunusedletterspile()
+		game.updateletters();
+		game.setup()
+	}
+	
+	//game.teststring = "HELLO".split("")
+	//game.teststring = game.teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
 
 //get array of unused letters, letters still in pile
 function getunusedletterspile(){
