@@ -7,7 +7,20 @@
 		var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 		game.teststring = game.teststring.map(function(letter,index){if(letter === " "){y=y+50;x=0;};x+=32;return {letter:letter,y:y,x:(x) + 20,offset:10}})
 		game.teststring = game.teststring.filter(function(obj){return letters.indexOf(obj.letter) !== -1;})
-		game.unusedletters = getunusedletterspile()
+		$.ajax({
+			method:'POST',
+			url:'http://localhost:3000/remainingletters',
+			success:function(data){
+				//console.log('here')
+				var letters = JSON.parse(data);
+				game.unusedletters = letters;
+			},failure:function(){
+				console.log('Couldnt get unused letters from servers');
+			},
+			data:JSON.stringify({word:game.teststring})
+		})
+		console.log(JSON.stringify({word:game.teststring.map(function(obj){return obj.letter})}))
+		//game.unusedletters = getunusedletterspile()
 		game.updateletters();
 		game.setup()
 	}
@@ -87,7 +100,7 @@ function getunusedletterspile(){
 //draw letters on svg
 	game.updateletters = function(){
 		//debugger;
-		d3.select('svg').selectAll('rect').data(game.teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){console.log(d);return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
+		d3.select('svg').selectAll('rect').data(game.teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
 
 		d3.select('svg').selectAll('text').data(game.teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveableletter')
 	}
@@ -140,14 +153,14 @@ function getunusedletterspile(){
 		}
 
 	$('body').keydown(function(evt){
-		console.log('which',evt.which)
+		//console.log('which',evt.which)
 		if(evt.which === 65){
 			if(game.switchable === true){
-				console.log(game.index > $('.moveable').length);
+				//console.log(game.index > $('.moveable').length);
 				game.index = game.index > $('.moveable').length ? 0: game.index +1;
 				setInterval(function(){game.switchable = true;
 				},400)
-				console.log(game.index)
+				//console.log(game.index)
 				//change tile
 				game.selected.attr('stroke','black')
 				game.selected = $('.moveable:eq(' + game.index + ')')
