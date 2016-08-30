@@ -11,3 +11,8 @@
 .space{
 	margin-top: 10px;
 }
+
+.highlighted{
+	font-size: 1.5em;
+	font-weight:bold;
+}
