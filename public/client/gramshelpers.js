@@ -197,7 +197,10 @@ function getunusedletterspile(){
 		} else if(evt.which === 38){
 			game.selected.attr('transform',getnewtranslate(game.selected.attr('transform'),0,-game.translateamount))
 			game.selectedletter.attr('transform',getnewtranslate(game.selectedletter.attr('transform'),0,-game.translateamount))
+		} else if(evt.which === 88){
+			game.selected.remove();
 		}
+
 	})	
 
 
