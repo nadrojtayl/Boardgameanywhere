@@ -7,9 +7,9 @@
 
 	for(var i = 0;i<8;i++){
 		for(var j=0;j<8;j++){
-			var obj = {x:(32*i),y:(32*j),width:32,height:32,redorwhite:'white'};
+			var obj = {x:(32*i),y:(32*j),width:32,height:32,redorwhite:'burlywood'};
 			if(i%2 === j%2){
-				obj['redorwhite'] = 'red';
+				obj['redorwhite'] = 'lightgrey';
 			}
 			boardmap[i][j] = obj;
 		}
