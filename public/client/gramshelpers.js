@@ -108,7 +108,7 @@ function getunusedletterspile(){
 
 	game.addtoteststring = function(letter){
 		game.teststring.push(
-			{letter:letter,y:50,x:500 + 20,offset:10}
+			{letter:letter,y:50,x:(32*game.teststring.length) + 20,offset:10}
 		)
 	}
 
@@ -208,6 +208,7 @@ function getunusedletterspile(){
 	})	
 	}
 
-	game.addletter = function(letter){
+	game.addletter = function(){
 		game.addtoteststring($('#lettertoadd').val())
+		game.updateletters();
 	}
