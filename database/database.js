@@ -11,6 +11,7 @@ var MongoClient = require('mongodb').MongoClient
 db = mongoose.connect('mongodb://localhost/boardgames');
 
 var room = new mongoose.Schema({
+	name: String,
 	gamedata:String,
 	userIds: [{type:mongoose.Schema.Types.ObjectId,ref:'User'}]
 })
@@ -32,19 +33,29 @@ var game = new mongoose.Schema({
 var Game = mongoose.model('Game',game);	
 
 //save user brian
-var testuser = new User({name:'Brian'});
-testuser.save(function(err){
-	if(err){console.log(err)}
-})
+// var testuser = new User({name:'Brian'});
+// testuser.save(function(err){
+// 	if(err){console.log(err)}
+// })
 
 //save a room that brian participates in
-User.findOne({name:'Brian'},function(err,person){
-	var room = new Room({gamedata:'fakedata'})
-	room.userIds.push(person.id);
+// User.findOne({name:'Brian'},function(err,person){
+// 	var room = new Room({name:'Game1',gamedata:'fakedata'})
+// 	room.userIds.push(person.id);
+// 	room.save();
+// })
+
+module.exports.postRoom = function(name,data){
+	var room = new Room({name:name,gamedata:data});
 	room.save();
-})
+}
 
+var getGameData = function(){
 
+}
+
+//return all
+// module.exports.getRooms = function
 // //var test = new game({lettersremaining:JSON.stringify(['a','e','i','o','u'])})
 
 

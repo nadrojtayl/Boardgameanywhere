@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var helper = require(__dirname + '/serverhelpers/remainingletters.js');
 var BP = require('body-parser')
+var db = require(__dirname + '/database/database.js')
 
 app.use(BP.urlencoded({ extended: true }));
 app.use(BP.json());
@@ -34,6 +35,12 @@ app.post('/split',function(req,res){
 	}
 	split = lettersinuse[room].pop();
 	res.end(JSON.stringify(split));
+})
+
+app.post('/newgame',function(req,res){
+	console.log(req.body.name);
+	db.postRoom(req.body.name,req.body.html)
+	res.end('Got it');
 })
 
 app.listen('3000');

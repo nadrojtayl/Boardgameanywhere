@@ -24,6 +24,22 @@
 		//game.unusedletters = getunusedletterspile()
 		game.updateletters();
 		game.setup()
+
+		//posts html of new game to database
+		var html = $('#gamespace').html()
+		var name = $('#room').val()
+		//console.log('name',name)
+		$.ajax({
+			method:'POST',
+			url:'http://localhost:3000/newgame',
+			data:{html:html,'name':name},
+			success:function(){
+				alert('Saved your game');
+			}, failure:
+			function(){
+				alert('Couldnt save your game')
+			}
+		})
 	}
 	
 	//game.teststring = "HELLO".split("")
