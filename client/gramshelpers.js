@@ -1,5 +1,6 @@
 //establish string of users board and split into array
 	var game = {};
+	game.switchable = true;
 	function initiategame(string){
 		game.teststring = string.split("")
 		var y = 50,x=0;
@@ -141,13 +142,19 @@ function getunusedletterspile(){
 	$('body').keydown(function(evt){
 		console.log('which',evt.which)
 		if(evt.which === 65){
-			game.index ++;
-			//change tile
-			game.selected.attr('stroke','black')
-			game.selected = $('.moveable:eq(' + game.index + ')')
-			game.selected.attr('stroke','red')
-			//change letter
-			game.selectedletter = $('.moveableletter:eq(' + game.index + ')')
+			if(game.switchable === true){
+				game.index = game.index +1;
+				setInterval(function(){game.switchable = true;
+				},400)
+				console.log(game.index)
+				//change tile
+				game.selected.attr('stroke','black')
+				game.selected = $('.moveable:eq(' + game.index + ')')
+				game.selected.attr('stroke','red')
+				//change letter
+				game.selectedletter = $('.moveableletter:eq(' + game.index + ')')
+				game.switchable = false;
+			}
 		}
 		if(evt.which===39){
 			game.selected.attr('transform',getnewtranslate(game.selected.attr('transform'),game.translateamount,0))
