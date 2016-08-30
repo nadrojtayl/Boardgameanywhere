@@ -1,0 +1,187 @@
+<html>
+<head>
+<!-- Use this to create a form where we can do something with the input-->
+<!-- IF CLOUDINARY LINK IS BROKEN, SEE BLOG POST HERE
+http://cloudinary.com/blog/direct_upload_made_easy_from_browser_or_mobile_app_to_the_cloudbin -->
+	<script src='node_modules/jquery/dist/jquery.js' type='text/javascript'></script>
+	<script src='bower_components/jquery/dist/jquery.min.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.ui.widget.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.iframe.transport.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.fileupload.js' type='text/javascript'></script>
+	<script src='cloudinary_js/js/jquery.cloudinary.js' type='text/javascript'></script>
+	<script src='node_modules/d3/build/d3.js'></script>
+	<script src='client/gramshelpers.js'></script>
+	<link rel = "stylesheet" type= "text/css" href = "client/styles.css"></link>
+	<script>
+	$.cloudinary.config({ cloud_name: 'boardgameanywhere', api_key: '797866663199626'})
+	</script>
+</head>
+<body>
+
+	<h2 class = "upload_form header" id="header" margin-bottom:'25px'>Upload your picture to start up right where you left off </div>
+	<script src="client/cloudinarysetup.js"></script>
+
+	<div class="space"  >
+		<svg class='draggable' id = "gameboard" width = 1000 height = 500 style = "border:5px solid black">
+			<image xlink:href="client/assets/tabletop.jpg" x= 0 y=-100 width = 1000 height=750></image>
+		</svg>	
+	</div>
+	<button onclick = "game.nextletter()">Get next letter</button>
+	<span> Letters remaining: <span id= 'remainingcount'>10</span> </span>
+	<script>
+
+		//initiategame('THISISATEST')
+	</script>
+<!-- 	<script>
+	//append unused letters 
+	var teststring = "HELLO".split("")
+	teststring = teststring.map(function(letter,index){return {letter:letter,y:50,x:(32*index) + 20,offset:10}})
+	// unusedletters.forEach(function(letter){
+	// 	$('#unusedpile').append($('<span margin-right:"10px">'+ letter + '</span>'))
+	// });
+
+	var unusedletters = []
+	var bananagramsdistribution = {
+		A:13,
+		B:3,
+		C:3,
+		D:6,
+		E:18,
+		F:3,
+		G:4,
+		H:3,
+		I:12,
+		J:2,
+		K:2,
+		L:5,
+		M:3,
+		N:8,
+		O:11,
+		P:3,
+		Q:2,
+		R:9,
+		S:6,
+		T:9,
+		U:6,
+		V:3,
+		W:3,
+		X:2,
+		Y:3,
+		Z:2
+	}
+	//remove letters currently in string from unused pile
+	teststring.forEach(function(letter){
+		bananagramsdistribution[letter.letter] = bananagramsdistribution[letter.letter]-1;
+		//console.log('letter',letter.letter,'number',bananagramsdistribution[letter.letter])
+	})
+
+	function shuffle(array) {
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+	}
+
+	for(var key in bananagramsdistribution){
+		for(var i=0; i<bananagramsdistribution[key];i++){
+			unusedletters.push(key);
+		}
+	}
+
+	unusedletters = shuffle(unusedletters);
+
+	console.log(unusedletters);
+
+	
+	$('#remainingcount').html(unusedletters.length)
+
+	function addtoteststring(letter){
+		teststring.push(
+			{letter:letter,y:50,x:(32*teststring.length) + 20,offset:10}
+		)
+	}
+
+	function youwin(){
+		alert("You are the last player to split! You won!")
+	}
+	function nextletter(){
+		if(unusedletters.length>0){
+			var newletter = unusedletters.pop();
+			addtoteststring(newletter);
+			updateletters();
+			$('#remainingcount').html(unusedletters.length)
+		} else{
+			youwin()
+		}
+	}
+
+	updateletters()
+	//string of words user is already using
+	function updateletters(){
+		d3.select('svg').selectAll('rect').data(teststring).enter().append('g').append('rect').attr('height',32).attr('width',32).attr('x',function(d){return d.x -2 }).attr('y',function(d){return d.y -28}).attr('fill','rgb(250,208,170)').attr('stroke-width',1).attr('stroke','black').attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveable')
+
+		d3.select('svg').selectAll('text').data(teststring).enter().append('g').append('text').attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('font-size',32).text(function(d){return d.letter}).attr('class','draggable').attr('transform','translate(100,0)').attr('class','moveableletter')
+	}
+
+	var tiles = $('.moveable')
+	var index = 0;
+	var selected = $('.moveable:eq(' + index + ')');
+	var selectedletter= $('.moveableletter:eq(' + index + ')');
+	selected.attr('stroke','red')
+	var translateamount = 2;
+
+
+	var getnewtranslate = function(old,changex,changey){
+		
+		var oldx = Number(old.slice(old.indexOf('(') +1,old.indexOf(',')));
+		var oldy = Number(old.slice(old.indexOf(',') + 1,old.indexOf(')')));
+		//console.log(oldy)
+		//var newtrans = old.slice(old.indexOf('(') + 1).slice(0,-1)
+		var final = 'translate(' + (oldx + changex) + ',' + (oldy + changey) + ')';
+		//console.log(oldy)
+;		//console.log(final);
+		return final;
+	}
+
+	$('body').keydown(function(evt){
+		console.log('which',evt.which)
+		if(evt.which === 65){
+			index ++;
+			//change tile
+			selected.attr('stroke','black')
+			selected = $('.moveable:eq(' + index + ')')
+			selected.attr('stroke','red')
+			//change letter
+			selectedletter = $('.moveableletter:eq(' + index + ')')
+		}
+		if(evt.which===39){
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),translateamount,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),translateamount,0))
+		} else if(evt.which === 37){
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),-translateamount,0))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),-translateamount,0))
+		} else if(evt.which === 40){
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,translateamount))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,translateamount))
+		} else if(evt.which === 38){
+			selected.attr('transform',getnewtranslate(selected.attr('transform'),0,-translateamount))
+			selectedletter.attr('transform',getnewtranslate(selectedletter.attr('transform'),0,-translateamount))
+		}
+	})	
+
+	</script> -->
+	
+</body>
+</html>

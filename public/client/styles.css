@@ -1,0 +1,13 @@
+.draggable{
+	cursor: move;
+}
+.header{
+	cursor:move;
+	font:red;
+}
+
+
+
+.space{
+	margin-top: 10px;
+}
