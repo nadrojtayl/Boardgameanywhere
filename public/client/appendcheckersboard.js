@@ -30,9 +30,17 @@
 		return (item['redorwhite'] === 'burlywood')
 	})
 
+	circlemap.forEach(function(obj,ind){
+		if(obj.y > 128){
+			obj['color'] = "red";
+		} else {
+			obj['color'] = 'black';
+		}
+	})
+
+	console.lo
 
 
 
-
-	d3.select('#checkers').selectAll('circle').data(circlemap).enter().append('circle').attr('cx',function(d){return d.x+16}).attr('cy',function(d){return d.y+16}).attr('r',16)
+	d3.select('#checkers').selectAll('circle').data(circlemap).enter().append('circle').attr('cx',function(d){return d.x+16}).attr('cy',function(d){return d.y+16}).attr('r',16).attr('fill',function(d){return d.color})
 	console.log('here');
