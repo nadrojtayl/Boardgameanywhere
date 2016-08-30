@@ -21,5 +21,18 @@
 
 
 	d3.select('#checkers').selectAll('rect').data(boardmap).enter().append('rect').attr('fill',function(d){return d.redorwhite}).attr('x',function(d){return d.x}).attr('y',function(d){return d.y}).attr('width',32).attr('height',32)
+	
+	circlemap = boardmap.filter(function(item,index){
+		return index % 8 !== 3 && index % 8 !== 4;
+	})
 
+	circlemap = circlemap.filter(function(item,index){
+		return (item['redorwhite'] === 'burlywood')
+	})
+
+
+
+
+
+	d3.select('#checkers').selectAll('circle').data(circlemap).enter().append('circle').attr('cx',function(d){return d.x+16}).attr('cy',function(d){return d.y+16}).attr('r',16)
 	console.log('here');
