@@ -1,6 +1,7 @@
 //establish string of users board and split into array
 	var game = {};
 	game.switchable = true;
+
 	function initiategame(string){
 		game.teststring = string.split("")
 		var y = 50,x=0;
