@@ -108,7 +108,7 @@ function getunusedletterspile(){
 
 	game.addtoteststring = function(letter){
 		game.teststring.push(
-			{letter:letter,y:50,x:(32*game.teststring.length) + 20,offset:10}
+			{letter:letter,y:50,x:500 + 20,offset:10}
 		)
 	}
 
@@ -186,6 +186,9 @@ function getunusedletterspile(){
 				game.switchable = false;
 			}
 		}
+		if(evt.which === 80){
+
+		}
 		if(evt.which===39){
 			game.selected.attr('transform',getnewtranslate(game.selected.attr('transform'),game.translateamount,0))
 			game.selectedletter.attr('transform',getnewtranslate(game.selectedletter.attr('transform'),game.translateamount,0))
@@ -203,8 +206,8 @@ function getunusedletterspile(){
 		}
 
 	})	
+	}
 
-
-
-
+	game.addletter = function(letter){
+		game.addtoteststring($('#lettertoadd').val())
 	}
