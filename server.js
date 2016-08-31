@@ -39,7 +39,7 @@ app.post('/split',function(req,res){
 
 app.post('/newgame',function(req,res){
 	//console.log(req.body.name);
-	lettersinuse[req.body.name] = helper.getletters()
+	lettersinuse[req.body.name] = helper.getletters(['A','E','I'])
 	db.postRoom(req.body.name,req.body.html)
 	res.end('Got it');
 })
