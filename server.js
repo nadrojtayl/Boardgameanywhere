@@ -8,11 +8,11 @@ var db = require(__dirname + '/database/database.js')
 app.use(BP.urlencoded({ extended: true }));
 app.use(BP.json());
 //console.log(helper.getletters('IOWEYOU'))
-
+var lettersinuse = {'hey':['A','E']}
 //FIX ISSUE WHERE YOU KEEP OVERCOUNTING
 app.use(express.static('public'));
 
-var lettersinuse = {};
+var lettersinuse = {hey:['A','B']}
 
 app.get('/',function(req,res){
 	res.sendFile(__dirname + '/index.html')
@@ -29,7 +29,7 @@ app.post('/remainingletters',function(req,res){
 app.post('/split',function(req,res){
 	
 	var room =req.body.room	;
-	//console.log('remainingletters',lettersinuse[room].length);
+	//console.log(req.body);
 	if(lettersinuse[room].length === 0){
 		res.end('You won!');
 	}
@@ -39,6 +39,7 @@ app.post('/split',function(req,res){
 
 app.post('/newgame',function(req,res){
 	//console.log(req.body.name);
+	lettersinuse[req.body.name] = helper.getletters()
 	db.postRoom(req.body.name,req.body.html)
 	res.end('Got it');
 })
