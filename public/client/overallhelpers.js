@@ -44,7 +44,7 @@ var loadgame = function(){
 					$('#gamespace').append(bananagramssetup());
 				}
 
-				//setTimeout(refresh,1000);
+				setTimeout(refresh,1000);
 			},failure:function(err){
 				console.log('hey');
 				$('#gamespace').append(bananagramssetup());
@@ -82,7 +82,7 @@ function refresh(){
 				if(data.length === 0){
 					$('#gamespace').append(bananagramssetup());
 				}
-				//setTimeout(refresh,1000);
+				setTimeout(refresh,1000);
 			},failure:function(err){
 				console.log('hey');
 				$('#gamespace').append(bananagramssetup());
@@ -99,7 +99,7 @@ function refresh(){
 			url:'http://localhost:3000/newgame',
 			data:{html:html,'name':name},
 			success:function(){
-				alert('Saved your game');
+				alert('Image generated on board. Saved your game');
 			}, failure:
 			function(){
 				alert('Couldnt save your game')

@@ -34,7 +34,7 @@
 			url:'http://localhost:3000/newgame',
 			data:{html:html,'name':name},
 			success:function(){
-				alert('Saved your game');
+				alert('Analyzed image and posted to board. Saved your game');
 			}, failure:
 			function(){
 				alert('Couldnt save your game')
