@@ -7,7 +7,7 @@ String.prototype.replaceAll = function(target, replacement) {
 var startnew = function(){
 	var name = $('#room').val();
 	$('#gamespace').empty();
-	
+
 	if($('#game').val() === "Bananagrams"){
 		$('#gamespace').append(bananagramssetup());
 	} else {
@@ -43,6 +43,8 @@ var loadgame = function(){
 				if(data.length === 0){
 					$('#gamespace').append(bananagramssetup());
 				}
+
+				//setInterval(refresh(),1000);
 			},failure:function(err){
 				console.log('hey');
 				$('#gamespace').append(bananagramssetup());
@@ -55,4 +57,33 @@ var loadgame = function(){
 	} else {
 		$('#gamespace').append(checkerssetup());
 	}
+}
+
+function refresh(){
+	$('#gamespace').empty();
+
+	$.ajax({url:'http://localhost:3000/loadgame',
+			method:'POST',
+			data:{name:name},
+			success:function(data){
+				console.log('hey');
+				
+				var cleanedData = data.replace(/\\/g, "")
+				//cleanedData = cleanedData.replaceAll('>t<',"");
+				// //cleanedData = cleanedData.replaceAll('> t<',"");
+				// //cleanedData = cleanedData.replaceAll('>tt<',"");
+				game.currenthtml = cleanedData;
+				$('#gamespace').html(cleanedData);
+				game.teststring = [];
+				$('text').each(function(index,text){game.teststring.push(text.textContent)})
+				game.setup()
+				if(data.length === 0){
+					$('#gamespace').append(bananagramssetup());
+				}
+			},failure:function(err){
+				console.log('hey');
+				$('#gamespace').append(bananagramssetup());
+			}
+		})
+
 }
