@@ -4,6 +4,18 @@ String.prototype.replaceAll = function(target, replacement) {
   return this.split(target).join(replacement);
 };
 
+var startnew = function(){
+	var name = $('#room').val();
+	$('#gamespace').empty();
+	
+	if($('#game').val() === "Bananagrams"){
+		$('#gamespace').append(bananagramssetup());
+	} else {
+		$('#gamespace').append(checkerssetup());
+	}
+}
+
+
 var loadgame = function(){
 	// console.log('heres');
 	// var game = $('#game').val();
@@ -12,14 +24,15 @@ var loadgame = function(){
 	$('#gamespace').empty();
 
 	if($('#game').val() === "Bananagrams"){
+		//console.log(name);
 		$.ajax({url:'http://localhost:3000/loadgame',
 			method:'POST',
 			data:{name:name},
 			success:function(data){
-				//console.log(data);
+				console.log('hey');
 				
 				var cleanedData = data.replace(/\\/g, "")
-				// //cleanedData = cleanedData.replaceAll('>t<',"");
+				//cleanedData = cleanedData.replaceAll('>t<',"");
 				// //cleanedData = cleanedData.replaceAll('> t<',"");
 				// //cleanedData = cleanedData.replaceAll('>tt<',"");
 				game.currenthtml = cleanedData;
@@ -27,8 +40,11 @@ var loadgame = function(){
 				game.teststring = [];
 				$('text').each(function(index,text){game.teststring.push(text.textContent)})
 				game.setup()
-				//$('#gamespace').append(bananagramssetup());
+				if(data.length === 0){
+					$('#gamespace').append(bananagramssetup());
+				}
 			},failure:function(err){
+				console.log('hey');
 				$('#gamespace').append(bananagramssetup());
 			}
 		})

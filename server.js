@@ -8,7 +8,7 @@ var db = require(__dirname + '/database/database.js')
 app.use(BP.urlencoded({ extended: true }));
 app.use(BP.json());
 //console.log(helper.getletters('IOWEYOU'))
-var lettersinuse = {'hey':['A','E']}
+var lettersinuse = {'hey':helper.getletters(['A'])}
 //FIX ISSUE WHERE YOU KEEP OVERCOUNTING
 app.use(express.static('public'));
 
@@ -46,7 +46,13 @@ app.post('/newgame',function(req,res){
 
 app.post('/loadgame',function(req,res){
 	db.getGameData(req.body.name,function(data){
-		res.end(JSON.stringify(data));
+		var data = JSON.stringify(data)
+		if(data.length > 0){
+			res.end(data);
+		} else {
+			console.log('here')
+			res.end('Not found');
+		}
 	})
 })
 

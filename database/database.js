@@ -55,7 +55,17 @@ module.exports.getGameData = function(name,cb){
 		if(err){
 			console.log(err);
 		}
-		cb(data.gamedata);
+		if(!data){
+
+		} else {
+			cb(data.gamedata);
+		}
+	})
+}
+
+module.exports.getRooms = function(name,cb){
+	Room.find({},function(err,data){
+		cb(data);
 	})
 }
 
